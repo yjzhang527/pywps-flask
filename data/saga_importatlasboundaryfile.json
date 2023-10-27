@@ -1,0 +1,1 @@
+{"Title": "Import Atlas Boundary File", "Abstract": "", "Identifier": "saga:importatlasboundaryfile", "Input": [[{"Title": "FILE"}, {"Abstract": "File"}, {"Identifier": "FILE"}, {"Parameter type": "QgsProcessingParameterFile"}, {"Accepted data types": ["str", "QgsProperty"]}]], "Outputs": [{"Title": ""}, {"Abstract": ""}, {"Parameter type": ""}]}

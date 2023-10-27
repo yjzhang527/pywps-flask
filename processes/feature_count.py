@@ -59,7 +59,7 @@ def main():
     count = FeatureCount()
     (request, response) = count.build_request_response()
     literal_in = count.inputs[0]
-    literal_in.file = '../data/railroads.gml'
+    literal_in.file = '../data_bak/railroads.gml'
     request.inputs["layer"].append(literal_in)
     count._handler(request, response)
 

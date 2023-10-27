@@ -1,4 +1,4 @@
-Flask
+Flask==1.1.4
 Jinja2
 jsonschema
 lxml
@@ -10,3 +10,5 @@ Werkzeug
 SQLAlchemy
 psutil
 pywps
+# pywps==4.2.11
+# pywps==4.5.2

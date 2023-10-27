@@ -1,0 +1,283 @@
+{
+  "Title": "Channel Network and Drainage Basins",
+  "Abstract": "",
+  "Identifier": "saga:channelnetworkanddrainagebasins",
+  "Input": [
+    [
+      {
+        "Title": "DEM"
+      },
+      {
+        "Abstract": "Elevation"
+      },
+      {
+        "Identifier": "DEM"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterRasterLayer"
+      },
+      {
+        "Accepted data types": [
+          {
+            "str": "layer ID"
+          },
+          {
+            "str": "layer name"
+          },
+          {
+            "str": "layer source"
+          },
+          "QgsProperty",
+          "QgsRasterLayer"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "DIRECTION"
+      },
+      {
+        "Abstract": "Flow Direction"
+      },
+      {
+        "Identifier": "DIRECTION"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterRasterDestination"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty",
+          "QgsProcessingOutputLayerDefinition"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "CONNECTION"
+      },
+      {
+        "Abstract": "Flow Connectivity"
+      },
+      {
+        "Identifier": "CONNECTION"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterRasterDestination"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty",
+          "QgsProcessingOutputLayerDefinition"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "ORDER"
+      },
+      {
+        "Abstract": "Strahler Order"
+      },
+      {
+        "Identifier": "ORDER"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterRasterDestination"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty",
+          "QgsProcessingOutputLayerDefinition"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "BASIN"
+      },
+      {
+        "Abstract": "Drainage Basins"
+      },
+      {
+        "Identifier": "BASIN"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterRasterDestination"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty",
+          "QgsProcessingOutputLayerDefinition"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "SEGMENTS"
+      },
+      {
+        "Abstract": "Channels"
+      },
+      {
+        "Identifier": "SEGMENTS"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterVectorDestination"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty",
+          "QgsProcessingOutputLayerDefinition"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "BASINS"
+      },
+      {
+        "Abstract": "Drainage Basins"
+      },
+      {
+        "Identifier": "BASINS"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterVectorDestination"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty",
+          "QgsProcessingOutputLayerDefinition"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "NODES"
+      },
+      {
+        "Abstract": "Junctions"
+      },
+      {
+        "Identifier": "NODES"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterVectorDestination"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty",
+          "QgsProcessingOutputLayerDefinition"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "THRESHOLD"
+      },
+      {
+        "Abstract": "Threshold"
+      },
+      {
+        "Identifier": "THRESHOLD"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterNumber"
+      },
+      {
+        "Accepted data types": [
+          "int",
+          "float",
+          "QgsProperty"
+        ]
+      }
+    ]
+  ],
+  "Outputs": [
+    [
+      {
+        "Title": "DIRECTION"
+      },
+      {
+        "Abstract": "Flow Direction"
+      },
+      {
+        "Parameter type": "QgsProcessingOutputRasterLayer"
+      }
+    ],
+    [
+      {
+        "Title": "CONNECTION"
+      },
+      {
+        "Abstract": "Flow Connectivity"
+      },
+      {
+        "Parameter type": "QgsProcessingOutputRasterLayer"
+      }
+    ],
+    [
+      {
+        "Title": "ORDER"
+      },
+      {
+        "Abstract": "Strahler Order"
+      },
+      {
+        "Parameter type": "QgsProcessingOutputRasterLayer"
+      }
+    ],
+    [
+      {
+        "Title": "BASIN"
+      },
+      {
+        "Abstract": "Drainage Basins"
+      },
+      {
+        "Parameter type": "QgsProcessingOutputRasterLayer"
+      }
+    ],
+    [
+      {
+        "Title": "SEGMENTS"
+      },
+      {
+        "Abstract": "Channels"
+      },
+      {
+        "Parameter type": "QgsProcessingOutputVectorLayer"
+      }
+    ],
+    [
+      {
+        "Title": "BASINS"
+      },
+      {
+        "Abstract": "Drainage Basins"
+      },
+      {
+        "Parameter type": "QgsProcessingOutputVectorLayer"
+      }
+    ],
+    [
+      {
+        "Title": "NODES"
+      },
+      {
+        "Abstract": "Junctions"
+      },
+      {
+        "Parameter type": "QgsProcessingOutputVectorLayer"
+      }
+    ]
+  ]
+}

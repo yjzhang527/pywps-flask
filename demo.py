@@ -25,35 +25,22 @@ import os
 import flask
 
 import pywps
+from flask import jsonify
+from qgis._core import QgsApplication
+
+from processes.pyswmm import SWMM
+from processes.jsonprocess import TestJson
 from pywps import Service
 
-from processes.sleep import Sleep
-from processes.ultimate_question import UltimateQuestion
-from processes.centroids import Centroids
-from processes.sayhello import SayHello
-from processes.feature_count import FeatureCount
-from processes.buffer import Buffer
-from processes.area import Area
-from processes.bboxinout import Box
-from processes.jsonprocess import TestJson
-
+from processes.QGISProFactory import QGISProcFactory
 
 app = flask.Flask(__name__)
 
-processes = [
-    FeatureCount(),
-    SayHello(),
-    Centroids(),
-    UltimateQuestion(),
-    Sleep(),
-    Buffer(),
-    Area(),
-    Box(),
-    TestJson()
-]
+processes = QGISProcFactory().InitAlgorithms()
+processes.append(SWMM())
+processes.append(TestJson())
 
 # For the process list on the home page
-
 process_descriptor = {}
 for process in processes:
     abstract = process.abstract
@@ -73,13 +60,36 @@ def hello():
                                  process_descriptor=process_descriptor)
 
 
-@app.route('/wps', methods=['GET', 'POST'])
-def wps():
+@app.route('/<base_url>', methods=['GET', 'POST'])
+@app.route('/<base_url>/<identifier>', methods=['GET', 'POST'])
+def wps_handle(base_url='wps', identifier=None, output_ids=None):
+    """
+        This function parses the request URL and extracts the following:
+            default operation, process identifier, output_ids, default mimetype
+            info that cannot be terminated from the URL will be None (default)
 
+            The url is expected to be in the following format, all the levels are optional.
+            [base_url]/[identifier]/[output_ids]
+
+        :param http_request: the request URL
+        :return: dict with the extracted info listed:
+            base_url - [wps|processes|jobs|api/api_level]
+            default_mimetype - determinate by the base_url part:
+                XML - if the base url == 'wps',
+                JSON - if the base URL in ['api'|'jobs'|'processes']
+            operation - also determinate by the base_url part:
+                ['api'|'jobs'] -> 'execute'
+                processes -> 'describeprocess' or 'getcapabilities'
+                    'describeprocess' if identifier is present as the next item, 'getcapabilities' otherwise
+            api - api level, only expected if base_url=='api'
+            identifier - the process identifier
+            output_ids - if exist then it selects raw output with the name output_ids
+        """
     return service
 
 
-@app.route('/outputs/'+'<path:filename>')
+
+@app.route('/outputs/' + '<path:filename>')
 def outputfile(filename):
     targetfile = os.path.join('outputs', filename)
     if os.path.isfile(targetfile):
@@ -94,7 +104,7 @@ def outputfile(filename):
         flask.abort(404)
 
 
-@app.route('/static/'+'<path:filename>')
+@app.route('/static/' + '<path:filename>')
 def staticfile(filename):
     targetfile = os.path.join('static', filename)
     if os.path.isfile(targetfile):
@@ -104,6 +114,15 @@ def staticfile(filename):
         return flask.Response(file_bytes, content_type=mime_type)
     else:
         flask.abort(404)
+
+
+@app.route('/list-algorithms', methods=['GET'])
+def list_algorithms():
+    algorithms = QgsApplication.processingRegistry().algorithms()
+
+    algorithm_names = [algorithm.id() for algorithm in algorithms]
+    return jsonify(algorithm_names)
+
 
 if __name__ == "__main__":
     import argparse
@@ -115,18 +134,18 @@ if __name__ == "__main__":
          It's intended to be running in test environment only!
         For more documentation, visit http://pywps.org/doc
         """
-        )
+    )
     parser.add_argument('-d', '--daemon',
                         action='store_true', help="run in daemon mode")
-    parser.add_argument('-a','--all-addresses',
-                        action='store_true', help="run flask using IPv4 0.0.0.0 (all network interfaces),"  +  
-                            "otherwise bind to 127.0.0.1 (localhost).  This maybe necessary in systems that only run Flask") 
+    parser.add_argument('-a', '--all-addresses',
+                        action='store_true', help="run flask using IPv4 0.0.0.0 (all network interfaces)," +
+                                                  "otherwise bind to 127.0.0.1 (localhost).  This maybe necessary in systems that only run Flask")
     args = parser.parse_args()
-    
+
     if args.all_addresses:
-        bind_host='0.0.0.0'
+        bind_host = '0.0.0.0'
     else:
-        bind_host='127.0.0.1'
+        bind_host = '127.0.0.1'
 
     if args.daemon:
         pid = None
@@ -137,8 +156,8 @@ if __name__ == "__main__":
 
         if (pid == 0):
             os.setsid()
-            app.run(threaded=True,host=bind_host)
+            app.run(threaded=True, host=bind_host)
         else:
             os._exit(0)
     else:
-        app.run(threaded=True,host=bind_host)
+        app.run(threaded=True, host=bind_host)

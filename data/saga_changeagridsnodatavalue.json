@@ -1,0 +1,144 @@
+{
+  "Title": "Change a Grid's No-Data Value",
+  "Abstract": "",
+  "Identifier": "saga:changeagridsnodatavalue",
+  "Input": [
+    [
+      {
+        "Title": "GRID"
+      },
+      {
+        "Abstract": "Grid"
+      },
+      {
+        "Identifier": "GRID"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterRasterLayer"
+      },
+      {
+        "Accepted data types": [
+          {
+            "str": "layer ID"
+          },
+          {
+            "str": "layer name"
+          },
+          {
+            "str": "layer source"
+          },
+          "QgsProperty",
+          "QgsRasterLayer"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "OUTPUT"
+      },
+      {
+        "Abstract": "Changed Grid"
+      },
+      {
+        "Identifier": "OUTPUT"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterRasterDestination"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty",
+          "QgsProcessingOutputLayerDefinition"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "TYPE"
+      },
+      {
+        "Abstract": "Type"
+      },
+      {
+        "Identifier": "TYPE"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterEnum"
+      },
+      {
+        "Available values": [
+          {
+            "0": "[0] single value"
+          },
+          {
+            "1": "[1] value range"
+          }
+        ]
+      },
+      {
+        "Accepted data types": [
+          "int",
+          {
+            "str": "as string representation of int, e.g. '1'"
+          },
+          "QgsProperty"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "VALUE"
+      },
+      {
+        "Abstract": "No-Data Value"
+      },
+      {
+        "Identifier": "VALUE"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterNumber"
+      },
+      {
+        "Accepted data types": [
+          "int",
+          "float",
+          "QgsProperty"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "CHANGE"
+      },
+      {
+        "Abstract": "Change Values"
+      },
+      {
+        "Identifier": "CHANGE"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterBoolean"
+      },
+      {
+        "Accepted data types": [
+          "bool",
+          "int",
+          "str",
+          "QgsProperty"
+        ]
+      }
+    ]
+  ],
+  "Outputs": [
+    {
+      "Title": "OUTPUT"
+    },
+    {
+      "Abstract": "Changed Grid"
+    },
+    {
+      "Parameter type": "QgsProcessingOutputRasterLayer"
+    }
+  ]
+}

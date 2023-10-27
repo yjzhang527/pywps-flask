@@ -1,0 +1,216 @@
+{
+  "Title": "Aspect",
+  "Abstract": "",
+  "Identifier": "gdal:aspect",
+  "Input": [
+    [
+      {
+        "Title": "INPUT"
+      },
+      {
+        "Abstract": "Input layer"
+      },
+      {
+        "Identifier": "INPUT"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterRasterLayer"
+      },
+      {
+        "Accepted data types": [
+          {
+            "str": "layer ID"
+          },
+          {
+            "str": "layer name"
+          },
+          {
+            "str": "layer source"
+          },
+          "QgsProperty",
+          "QgsRasterLayer"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "BAND"
+      },
+      {
+        "Abstract": "Band number"
+      },
+      {
+        "Identifier": "BAND"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterBand"
+      },
+      {
+        "Accepted data types": [
+          "int",
+          "QgsProperty"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "TRIG_ANGLE"
+      },
+      {
+        "Abstract": "Return trigonometric angle instead of azimuth"
+      },
+      {
+        "Identifier": "TRIG_ANGLE"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterBoolean"
+      },
+      {
+        "Accepted data types": [
+          "bool",
+          "int",
+          "str",
+          "QgsProperty"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "ZERO_FLAT"
+      },
+      {
+        "Abstract": "Return 0 for flat instead of -9999"
+      },
+      {
+        "Identifier": "ZERO_FLAT"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterBoolean"
+      },
+      {
+        "Accepted data types": [
+          "bool",
+          "int",
+          "str",
+          "QgsProperty"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "COMPUTE_EDGES"
+      },
+      {
+        "Abstract": "Compute edges"
+      },
+      {
+        "Identifier": "COMPUTE_EDGES"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterBoolean"
+      },
+      {
+        "Accepted data types": [
+          "bool",
+          "int",
+          "str",
+          "QgsProperty"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "ZEVENBERGEN"
+      },
+      {
+        "Abstract": "Use Zevenbergen&Thorne formula instead of the Horn's one"
+      },
+      {
+        "Identifier": "ZEVENBERGEN"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterBoolean"
+      },
+      {
+        "Accepted data types": [
+          "bool",
+          "int",
+          "str",
+          "QgsProperty"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "OPTIONS"
+      },
+      {
+        "Abstract": "Additional creation options"
+      },
+      {
+        "Identifier": "OPTIONS"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterString"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "EXTRA"
+      },
+      {
+        "Abstract": "Additional command-line parameters"
+      },
+      {
+        "Identifier": "EXTRA"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterString"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty"
+        ]
+      }
+    ],
+    [
+      {
+        "Title": "OUTPUT"
+      },
+      {
+        "Abstract": "Aspect"
+      },
+      {
+        "Identifier": "OUTPUT"
+      },
+      {
+        "Parameter type": "QgsProcessingParameterRasterDestination"
+      },
+      {
+        "Accepted data types": [
+          "str",
+          "QgsProperty",
+          "QgsProcessingOutputLayerDefinition"
+        ]
+      }
+    ]
+  ],
+  "Outputs": [
+    {
+      "Title": "OUTPUT"
+    },
+    {
+      "Abstract": "Aspect"
+    },
+    {
+      "Parameter type": "QgsProcessingOutputRasterLayer"
+    }
+  ]
+}
