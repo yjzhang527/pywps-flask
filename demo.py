@@ -88,7 +88,6 @@ def wps_handle(base_url='wps', identifier=None, output_ids=None):
     return service
 
 
-
 @app.route('/outputs/' + '<path:filename>')
 def outputfile(filename):
     targetfile = os.path.join('outputs', filename)
