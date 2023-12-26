@@ -1,7 +1,7 @@
 import json
 import os
 
-from pywps import LiteralInput, LiteralOutput, ComplexInput, ComplexOutput, Format
+from pywps import LiteralInput, LiteralOutput, ComplexInput, ComplexOutput, Format, BoundingBoxInput
 from pywps.validator.mode import MODE
 
 from .QGISProcess import QGISProcess
@@ -35,8 +35,11 @@ class QGISProcFactory():
                             'QgsProcessingParameterMapLayer'
                         ]:
                             inputs.append(ComplexInput(i[0].get('Title'), i[1].get('Abstract'),
+                                                       max_occurs=2,
                                                        supported_formats=[Format('image/tiff'),
-                                                                          Format('application/zip')], mode=MODE.NONE))
+                                                                          Format('application/zip'),
+                                                                          Format('application/geo+json'),
+                                                                          Format('application/json')], mode=MODE.NONE))
                         elif i[3].get('Parameter type') in [
                             'QgsProcessingParameterVectorLayer',
                             'QgsProcessingParameterFeatureSource',
@@ -45,6 +48,7 @@ class QGISProcFactory():
                             'QgsProcessingParameterFeatureSink',
                         ]:
                             inputs.append(ComplexInput(i[0].get('Title'), i[1].get('Abstract'),
+                                                       max_occurs=2,
                                                        supported_formats=[Format('application/zip')], mode=MODE.NONE))
                         elif i[3].get('Parameter type') in [
                             'QgsProcessingParameterRasterLayer',
@@ -54,6 +58,7 @@ class QGISProcFactory():
                             'ParameterVectorVrtDestination',
                         ]:
                             inputs.append(ComplexInput(i[0].get('Title'), i[1].get('Abstract'),
+                                                       max_occurs=2,
                                                        supported_formats=[Format('image/tiff')], mode=MODE.NONE))
                         else:
                             inputs.append(LiteralInput(i[0].get('Title'), i[1].get('Abstract'), data_type='string'))

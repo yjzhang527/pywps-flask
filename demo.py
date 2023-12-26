@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-
+import json
 # Copyright (c) 2016 PyWPS Project Steering Committee
 # 
 # 
@@ -22,11 +22,16 @@
 # SOFTWARE.
 
 import os
+import random
+
 import flask
 
 import pywps
-from flask import jsonify
+from PyQt5.QtCore import QVariant
+from flask import jsonify, request
+from processing.algs import qgis
 from qgis._core import QgsApplication
+from qgis.core import QgsVectorLayer, QgsFeature, QgsField, QgsGeometry, QgsPointXY, QgsField, QgsProject
 
 from processes.pyswmm import SWMM
 from processes.jsonprocess import TestJson
@@ -121,6 +126,32 @@ def list_algorithms():
 
     algorithm_names = [algorithm.id() for algorithm in algorithms]
     return jsonify(algorithm_names)
+
+
+def generate_vector_name():
+    """
+       生成一个随机的矢量要素名称。
+
+       Returns:
+           vector_name (str): 随机生成的矢量名称。
+    """
+    vector_name = ""
+    for i in range(6):
+        vector_name += random.choice("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+    return vector_name
+
+
+@app.route('/publish-features', methods=['POST'])
+def publish_features():
+    """
+       接收POST请求，将vector_json_data保存到文件中
+       :return: None
+    """
+    vector_json_data = json.loads(request.get_data())
+    layer_name = generate_vector_name()
+    with open(f"static/requests/temp_{layer_name}.json", "w") as file:
+        json.dump(vector_json_data, file)
+    return layer_name
 
 
 if __name__ == "__main__":

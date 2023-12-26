@@ -22,7 +22,7 @@
 在pycharm中设置QGIS python-qgis为解释器时无法通过pycharm终端安装依赖
 ```
 
-- 邮件以管理员权限打开`OSGeo4W Shell`
+- 右键以管理员权限打开`OSGeo4W Shell`
 
 ![image-20231031191557825](E:%5Cprojects%5Cpc-projects%5Cpywps-flask%5CREADME.assets%5Cimage-20231031191557825.png)
 
@@ -32,3 +32,6 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 pip install pywps -i https://pypi.tuna.tsinghua.edu.cn/simple
 
+> 启动Flask（demo.py）文件
+
+![image-20231215100818771](E:%5Cprojects%5Cqgis%5Cpywps-flask%5Cpywps-flask%20install.assets%5Cimage-20231215100818771.png)

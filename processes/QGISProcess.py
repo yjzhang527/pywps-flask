@@ -1,8 +1,10 @@
+import json
+
 from qgis.core import *
 
 from pywps import Process
 
-QgsApplication.setPrefixPath(r'C:\Program Files\QGIS 3.32.1', True)
+QgsApplication.setPrefixPath(r'C:\OSGeo4W', True)
 qgs = QgsApplication([], True)
 qgs.initQgis()
 print('qgs initialized')
@@ -34,11 +36,21 @@ class QGISProcess(Process):
 
     def _handler(self, request, response):
         from processing.core.Processing import processing
-        body = {i[0]: i[1][0].data for i in request.inputs.items()}
+
+        body = {}
+        for key, value in request.inputs.items():
+            if len(value) > 1:
+                body[key] = [i.data for i in value]
+            else:
+                body[key] = value[0].data
+
+        # body = {i[0]: i[1][0].data for i in request.inputs.items()}
+        # print(request.inputs)
         # print(body)
+        print(json.loads(request.http_request.data))
         ret = processing.run(self.identifier, body)
 
-        # response.outputs[request.outputs[0]].data = 'success data in %s!'
-        response.outputs['OUTPUT'].data = ret
-
-        return response
+        # response.outputs['BASIN'].data = ret['BASIN']
+        for key, value in ret.items():
+            if key in response.outputs and hasattr(response.outputs[key], "data"):
+                response.outputs[key].data = value
