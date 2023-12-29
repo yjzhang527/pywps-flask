@@ -33,6 +33,7 @@ from processing.algs import qgis
 from qgis._core import QgsApplication
 from qgis.core import QgsVectorLayer, QgsFeature, QgsField, QgsGeometry, QgsPointXY, QgsField, QgsProject
 
+from processes.channelnetworkanddrainagebasins import ChannelNetworkAndDrainageBasins
 from processes.pyswmm import SWMM
 from processes.jsonprocess import TestJson
 from pywps import Service
@@ -44,6 +45,7 @@ app = flask.Flask(__name__)
 processes = QGISProcFactory().InitAlgorithms()
 processes.append(SWMM())
 processes.append(TestJson())
+processes.append(ChannelNetworkAndDrainageBasins())
 
 # For the process list on the home page
 process_descriptor = {}
@@ -65,8 +67,10 @@ def hello():
                                  process_descriptor=process_descriptor)
 
 
+# @app.route('/wps', methods=['GET', 'POST'])
 @app.route('/<base_url>', methods=['GET', 'POST'])
 @app.route('/<base_url>/<identifier>', methods=['GET', 'POST'])
+# def wps_handle():
 def wps_handle(base_url='wps', identifier=None, output_ids=None):
     """
         This function parses the request URL and extracts the following:

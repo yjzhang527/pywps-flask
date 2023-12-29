@@ -38,9 +38,15 @@ class QGISProcess(Process):
         from processing.core.Processing import processing
 
         body = {}
+        # for key, value in request.inputs.items():
+        #     if len(value) > 1:
+        #         body[key] = [i.data for i in value]
+        #     else:
+        #         body[key] = value[0].data
+
         for key, value in request.inputs.items():
-            if len(value) > 1:
-                body[key] = [i.data for i in value]
+            if key == 'DEM':
+                body[key] = value[0].file
             else:
                 body[key] = value[0].data
 

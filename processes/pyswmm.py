@@ -29,7 +29,7 @@ class SWMM(Process):
 
     def _handler(self, request, response):
         from pyswmm import Simulation
-        inp = request.inputs['inp_in'][0].data
+        inp = request.inputs['inp_in'][0].file
 
         sim = Simulation(inp)
         sim.execute()

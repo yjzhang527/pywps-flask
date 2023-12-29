@@ -10,5 +10,5 @@ Werkzeug
 SQLAlchemy
 psutil
 pywps
-# pywps==4.2.11
-# pywps==4.5.2
+# pip3 install pyswmm -i https://mirrors.aliyun.com/pypi/simple/
+# pip3 install swmm_api -i https://mirrors.aliyun.com/pypi/simple/
