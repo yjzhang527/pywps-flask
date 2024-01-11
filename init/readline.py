@@ -1,14 +1,12 @@
-import os
-import sys
-
+import processing
 from qgis.core import *
 
-QgsApplication.setPrefixPath(r'C:\OSGeo4W', True)
+
+QgsApplication.setPrefixPath(r'E:\QGIS', True)
 
 qgs = QgsApplication([], True)
 
 qgs.initQgis()
-
 # print('qgs initialized')
 #
 #
@@ -25,15 +23,12 @@ print('algorithm initialized')
 # for alg in QgsApplication.processingRegistry().algorithms():
 #     print("{}:{} --> {}".format(alg.provider().name(), alg.name(), alg.displayName()))
 
-# import sys
-# f=open("myprint2.txt","w+",encoding="utf-8")
-# sys.stdout = f
+import sys
+f=open("myprint2.txt","w+",encoding="utf-8")
+sys.stdout = f
+for alg in QgsApplication.processingRegistry().algorithms():
+    print("===========================================")
+    processing.algorithmHelp(alg.id())
 
-# for alg in QgsApplication.processingRegistry().algorithms():
-#     print("===========================================")
-processing.algorithmHelp('saga:channelnetworkanddrainagebasins')
-    # print("{}:{} --> {}".format(alg.provider().name(), alg.name(), alg.displayName()))
-    # print(alg.id())
 
-    # QgsRectangle()
-    # QgsProperty()
+
